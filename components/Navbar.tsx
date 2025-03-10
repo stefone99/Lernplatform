@@ -31,7 +31,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <span className="text-lg font-bold text-primary-600 dark:text-primary-400">
-              Informationssicherheit
+              InfoSec Learn
             </span>
           </Link>
           
@@ -75,11 +75,20 @@ export default function Navbar() {
               </button>
             </div>
             
+            {/* Anmelden-Button in Blau - LINKS */}
             <Link 
-              href="/login" 
+              href="/anmelden" 
               className="hidden md:block px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-all"
             >
               Anmelden
+            </Link>
+            
+            {/* Login-Button ohne Farbe, nur Kontur - RECHTS */}
+            <Link 
+              href="/login" 
+              className="hidden md:block px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+            >
+              Login
             </Link>
           </div>
         </div>
