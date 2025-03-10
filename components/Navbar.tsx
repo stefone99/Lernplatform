@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useTheme } from '@/components/ThemeProvider';
 import { useState, useEffect } from 'react';
+import { useTheme } from './ThemeContext';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
