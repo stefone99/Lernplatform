@@ -49,7 +49,7 @@ IT-Sicherheit, auch bekannt als Cybersicherheit, beschäftigt sich mit dem Schut
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/cybersecurity-concept.jpg',
       alt: 'Cybersicherheit Konzept'
     },
     {
@@ -254,7 +254,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                     }`}
                   >
                     <div className="glass p-3 rounded-xl overflow-hidden shadow-lg">
-                      <Image
+                      <img
                         src={section.src}
                         alt={section.alt}
                         width={1200}
