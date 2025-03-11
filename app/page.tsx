@@ -25,7 +25,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button className="px-6 py-3 rounded-xl bg-primary-600 text-white hover:bg-primary-700 transition-all">
-                  Kostenlos starten
+                  Jetzt starten
                 </button>
                 <button className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
                   Mehr erfahren
@@ -89,22 +89,28 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <CourseCard 
+              id={1}
               title="Grundlagen der IT-Sicherheit" 
               description="Lerne die Basisprinzipien der Informationssicherheit kennen und verstehe die wichtigsten Konzepte."
               level="Anfänger"
               lessons={12}
+              available={true}
             />
             <CourseCard 
+              id={2}
               title="Sichere Passwortverwaltung" 
               description="Erfahre, wie du starke Passwörter erstellst und diese sicher verwaltest, um deine Daten zu schützen."
               level="Anfänger"
               lessons={8}
+              available={false}
             />
             <CourseCard 
+              id={3}
               title="Phishing-Angriffe erkennen" 
               description="Lerne, betrügerische E-Mails und Webseiten zu erkennen und schütze dich vor Identitätsdiebstahl."
               level="Mittel"
               lessons={10}
+              available={false}
             />
           </div>
         </div>
