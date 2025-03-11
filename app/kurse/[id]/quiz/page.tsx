@@ -247,9 +247,9 @@ export default function QuizPage({ params }: { params: { id: string } }) {
                   </>
                 ) : (
                   <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-4">Herzlichen Glückwunsch!</h2>
+                    <h2 className="text-2xl font-bold mb-4">Quiz beendet</h2>
                     <p className="text-lg mb-6">
-                      Du hast alle Fragen beantwortet. Klicke auf die Schaltfläche unten, um deine Ergebnisse zu sehen.
+                      Klicke auf die Schaltfläche unten, um deine Ergebnisse zu sehen.
                     </p>
                     <button
                       onClick={showQuizResults}

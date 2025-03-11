@@ -237,7 +237,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                         ? 'opacity-100 translate-y-0' 
                         : 'opacity-0 translate-y-10'
                     }`}
-                    style={{ transitionDelay: `${index * 200}ms` }}
+                    style={{ transitionDelay: `${index * 50}ms` }}
                     dangerouslySetInnerHTML={{ __html: content }}
                   />
                 );
@@ -252,7 +252,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                         ? 'opacity-100 translate-y-0 scale-100' 
                         : 'opacity-0 translate-y-10 scale-95'
                     }`}
-                    style={{ transitionDelay: `${index * 200}ms` }}
+                    style={{ transitionDelay: `${index * 50}ms` }}
                   >
                     <div className="glass p-3 rounded-xl overflow-hidden shadow-lg">
                       <img
@@ -281,7 +281,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-10'
               }`}
-              style={{ transitionDelay: `${courseContent.length * 200}ms` }}
+              style={{ transitionDelay: `${courseContent.length * 50}ms` }}
             >
               <div className="glass p-10 rounded-xl text-center shadow-xl border-2 border-primary-200 dark:border-primary-800">
                 <h2 className="text-3xl font-bold mb-6">Bereit, dein Wissen zu testen?</h2>

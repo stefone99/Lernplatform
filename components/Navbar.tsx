@@ -2,11 +2,16 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeContext';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  
+  // Überprüfen, ob wir auf der Startseite sind
+  const isHomePage = pathname === '/';
   
   useEffect(() => {
     const handleScroll = () => {
@@ -23,32 +28,70 @@ export default function Navbar() {
     };
   }, []);
 
+  // Funktion zum Überprüfen, ob ein Link aktiv ist
+  const isActive = (path: string) => {
+    if (path === '/kurse' && pathname.startsWith('/kurse')) {
+      return true;
+    }
+    return pathname === path;
+  };
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled ? 'py-2 glass' : 'py-4 bg-transparent'
     }`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href={isHomePage ? "/" : "/kurse"} className="flex items-center space-x-2">
             <span className="text-lg font-bold text-primary-600 dark:text-primary-400">
               Informationssicherheit
             </span>
           </Link>
           
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="hover:text-primary-600 dark:hover:text-primary-400 transition-all">
-              Startseite
-            </Link>
-            <Link href="/kurse" className="hover:text-primary-600 dark:hover:text-primary-400 transition-all">
-              Kurse
-            </Link>
-            <Link href="/umfragen" className="hover:text-primary-600 dark:hover:text-primary-400 transition-all">
-              Umfragen
-            </Link>
-            <Link href="/fortschritt" className="hover:text-primary-600 dark:hover:text-primary-400 transition-all">
-              Fortschritt
-            </Link>
-          </div>
+          {/* Nur auf Nicht-Startseiten die vollständige Navigation anzeigen */}
+          {!isHomePage && (
+            <div className="hidden md:flex items-center space-x-8">
+              <Link
+                href="/kurse"
+                className={`transition-all ${
+                  isActive('/kurse')
+                    ? 'text-primary-600 dark:text-primary-400 font-semibold'
+                    : 'hover:text-primary-600 dark:hover:text-primary-400'
+                }`}
+              >
+                Kurse
+                {isActive('/kurse') && (
+                  <div className="h-0.5 bg-primary-600 dark:bg-primary-400 w-full mt-0.5 rounded-full"></div>
+                )}
+              </Link>
+              <Link
+                href="/umfragen"
+                className={`transition-all ${
+                  isActive('/umfragen')
+                    ? 'text-primary-600 dark:text-primary-400 font-semibold'
+                    : 'hover:text-primary-600 dark:hover:text-primary-400'
+                }`}
+              >
+                Umfragen
+                {isActive('/umfragen') && (
+                  <div className="h-0.5 bg-primary-600 dark:bg-primary-400 w-full mt-0.5 rounded-full"></div>
+                )}
+              </Link>
+              <Link
+                href="/fortschritt"
+                className={`transition-all ${
+                  isActive('/fortschritt')
+                    ? 'text-primary-600 dark:text-primary-400 font-semibold'
+                    : 'hover:text-primary-600 dark:hover:text-primary-400'
+                }`}
+              >
+                Fortschritt
+                {isActive('/fortschritt') && (
+                  <div className="h-0.5 bg-primary-600 dark:bg-primary-400 w-full mt-0.5 rounded-full"></div>
+                )}
+              </Link>
+            </div>
+          )}
           
           <div className="flex items-center space-x-4">
             <button
@@ -67,15 +110,18 @@ export default function Navbar() {
               )}
             </button>
             
-            <div className="md:hidden">
-              <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
-            </div>
+            {/* Burger-Menü für Mobile, nur auf Nicht-Startseiten */}
+            {!isHomePage && (
+              <div className="md:hidden">
+                <button className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            )}
             
-            {/* Anmelden-Button in Blau - LINKS */}
+            {/* Anmelden-Button */}
             <Link 
               href="/anmelden" 
               className="hidden md:block px-4 py-2 rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-all"
@@ -83,7 +129,7 @@ export default function Navbar() {
               Anmelden
             </Link>
             
-            {/* Login-Button ohne Farbe, nur Kontur - RECHTS */}
+            {/* Login-Button */}
             <Link 
               href="/login" 
               className="hidden md:block px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"

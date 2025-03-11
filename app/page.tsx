@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import FeatureCard from '@/components/FeatureCard';
 import CourseCard from '@/components/CourseCard';
@@ -8,6 +9,12 @@ import SurveyPreview from '@/components/SurveyPreview';
 import ProgressChart from '@/components/ProgressChart';
 
 export default function Home() {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push('/kurse');
+  };
+
   return (
     <main className="min-h-screen">
       <Navbar />
@@ -24,7 +31,10 @@ export default function Home() {
                 Entdecke moderne Lernkonzepte für Informationssicherheit und verbessere deine digitalen Fähigkeiten in einer entspannten Lernumgebung.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-3 rounded-xl bg-primary-600 text-white hover:bg-primary-700 transition-all">
+                <button 
+                  onClick={handleGetStarted}
+                  className="px-6 py-3 rounded-xl bg-primary-600 text-white hover:bg-primary-700 transition-all"
+                >
                   Jetzt starten
                 </button>
                 <button className="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
@@ -35,7 +45,7 @@ export default function Home() {
             <div className="md:w-1/2">
               <div className="glass p-4 rounded-2xl">
                 <Image
-                  src="/placeholder/600/400"
+                  src="/images/infosich.jpg"
                   alt="Informationssicherheit lernen"
                   width={600}
                   height={400}
@@ -82,9 +92,12 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold">Aktuelle Kurse</h2>
-            <a href="/kurse" className="text-primary-600 dark:text-primary-400 hover:underline">
+            <button 
+              onClick={handleGetStarted}
+              className="text-primary-600 dark:text-primary-400 hover:underline cursor-pointer"
+            >
               Alle Kurse ansehen
-            </a>
+            </button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -121,9 +134,12 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold">Lernbasierte Umfragen</h2>
-            <a href="/umfragen" className="text-primary-600 dark:text-primary-400 hover:underline">
+            <button 
+              onClick={() => router.push('/umfragen')}
+              className="text-primary-600 dark:text-primary-400 hover:underline cursor-pointer"
+            >
               Alle Umfragen ansehen
-            </a>
+            </button>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -173,6 +189,24 @@ export default function Home() {
         </div>
       </section>
       
+      {/* Call to Action */}
+      <section className="py-12 md:py-16 bg-primary-600 text-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-6">Bereit, deine Wissen zu erweitern?</h2>
+            <p className="text-xl mb-8 opacity-90">
+              Starte jetzt mit deinem ersten Kurs und mache den ersten Schritt zu mehr Sicherheit im digitalen Alltag.
+            </p>
+            <button 
+              onClick={handleGetStarted}
+              className="px-8 py-4 bg-white text-primary-700 rounded-xl font-medium text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl"
+            >
+              Kostenlos starten
+            </button>
+          </div>
+        </div>
+      </section>
+      
       {/* Footer */}
       <footer className="py-12 bg-gray-100 dark:bg-gray-900">
         <div className="container mx-auto px-4 md:px-6">
@@ -186,10 +220,30 @@ export default function Home() {
             <div>
               <h3 className="text-lg font-bold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/" className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Startseite</a></li>
-                <li><a href="/kurse" className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Kurse</a></li>
-                <li><a href="/umfragen" className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Umfragen</a></li>
-                <li><a href="/fortschritt" className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">Fortschritt</a></li>
+                <li>
+                  <button 
+                    onClick={handleGetStarted}
+                    className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer"
+                  >
+                    Kurse
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => router.push('/umfragen')}
+                    className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer"
+                  >
+                    Umfragen
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => router.push('/fortschritt')}
+                    className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 cursor-pointer"
+                  >
+                    Fortschritt
+                  </button>
+                </li>
               </ul>
             </div>
             <div>
