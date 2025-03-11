@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 
 export default function CourseDetailPage({ params }: { params: { id: string } }) {
@@ -70,7 +69,7 @@ Die Bedeutung der IT-Sicherheit kann kaum überschätzt werden. Hier sind einige
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/data-protection.jpg',
       alt: 'Datenschutz Illustration'
     },
     {
@@ -91,7 +90,7 @@ Malware (kurz für "Malicious Software") ist Schadsoftware, die entwickelt wurde
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/malware-threat.jpg',
       alt: 'Verschiedene Arten von Malware'
     },
     {
@@ -108,7 +107,7 @@ Phishing-Angriffe werden immer ausgefeilter und können manchmal selbst erfahren
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/phishing-email.jpg',
       alt: 'Beispiel einer Phishing-E-Mail'
     },
     {
@@ -127,7 +126,7 @@ Solche Angriffe sind besonders in ungesicherten WLAN-Netzwerken wie öffentliche
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/mitm-attack.jpg',
       alt: 'Man-in-the-Middle Angriff Konzept'
     },
     {
@@ -150,7 +149,7 @@ Aktivieren Sie 2FA, wo immer es möglich ist, insbesondere für wichtige Konten 
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/two-factor-auth.jpg',
       alt: 'Zwei-Faktor-Authentifizierung Illustration'
     },
     {
@@ -173,7 +172,7 @@ Sichern Sie Ihre wichtigen Daten regelmäßig auf externen Festplatten oder in d
     },
     {
       type: 'image',
-      src: '/placeholder/1200/600',
+      src: '/images/data-backup.jpg',
       alt: 'Daten-Backup Konzept'
     },
     {
@@ -206,14 +205,14 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
       
       <div className="pt-24 md:pt-32 pb-8">
         <div className="container mx-auto px-4 md:px-6">
-          <h1 className="text-5xl font-bold mb-6 text-center">Grundlagen der IT-Sicherheit</h1>
+          <h1 className="text-5xl font-bold mb-8 text-center">Grundlagen der IT-Sicherheit</h1>
           
           <div className="max-w-4xl mx-auto">
             {courseContent.map((section, index) => {
               if (section.type === 'text') {
                 // Konvertiere Markdown-ähnlichen Text in HTML
                 const content = section.content
-                  .replace(/^# (.+)$/gm, '<h1 class="text-4xl font-bold my-6">$1</h1>')
+                  .replace(/^# (.+)$/gm, '') // Entferne die erste Überschrift
                   .replace(/^## (.+)$/gm, '<h2 class="text-3xl font-bold my-5 mt-10">$1</h2>')
                   .replace(/^### (.+)$/gm, '<h3 class="text-2xl font-bold my-4">$1</h3>')
                   .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
@@ -238,6 +237,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                         ? 'opacity-100 translate-y-0' 
                         : 'opacity-0 translate-y-10'
                     }`}
+                    style={{ transitionDelay: `${index * 200}ms` }}
                     dangerouslySetInnerHTML={{ __html: content }}
                   />
                 );
@@ -252,6 +252,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                         ? 'opacity-100 translate-y-0 scale-100' 
                         : 'opacity-0 translate-y-10 scale-95'
                     }`}
+                    style={{ transitionDelay: `${index * 200}ms` }}
                   >
                     <div className="glass p-3 rounded-xl overflow-hidden shadow-lg">
                       <img
@@ -280,6 +281,7 @@ Sind Sie bereit, Ihr Wissen zu testen? Nehmen Sie am Quiz teil, um zu sehen, wie
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-10'
               }`}
+              style={{ transitionDelay: `${courseContent.length * 200}ms` }}
             >
               <div className="glass p-10 rounded-xl text-center shadow-xl border-2 border-primary-200 dark:border-primary-800">
                 <h2 className="text-3xl font-bold mb-6">Bereit, dein Wissen zu testen?</h2>
